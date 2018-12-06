@@ -5,7 +5,7 @@ class Dishdetail extends Component {
     // to format date in my taste
     formatDateNitty(dateString) {
         const date = new Date(dateString);
-        return date.toDateString('mmm dd, yyyy');
+        return date.toDateString('mm dd, yyyy');
     }
 
     render() {
@@ -32,13 +32,11 @@ class Dishdetail extends Component {
                     </CardBody>
                 </Card>
                 
-                {selectedDish.comments ?
+                {comments &&
                     <div className="container">
                         <h4>Comments</h4>
                         {comments}
                     </div>
-                :
-                    <div></div>
                 }
             </div>
         );
