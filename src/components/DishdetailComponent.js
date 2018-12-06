@@ -31,6 +31,7 @@ class Dishdetail extends Component {
                         <CardText>{selectedDish.description}</CardText>
                     </CardBody>
                 </Card>
+                
                 {selectedDish.comments ?
                     <div className="container">
                         <h4>Comments</h4>

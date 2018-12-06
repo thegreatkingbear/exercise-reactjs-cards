@@ -19,7 +19,8 @@ class Menu extends Component {
     render() {
         const menu = this.props.dishes.map((dish) => {
             return (
-            //react debugger keeps complaining about key in array. that's why I added key to below div
+            // react debugger keeps complaining about key in array. 
+            // that's why I added key to below div
                 <div key={dish.id} className="col-12 col-md-5 m-1">
                     <Card
                         onClick={() => this.onDishSelect(dish)}>
@@ -40,6 +41,7 @@ class Menu extends Component {
                 <div className="row">
                     {menu}
                 </div>
+                
                 <div className="row">
                     <div  className="col-12 col-md-5 m-1">
                         {selectedDish ? 
