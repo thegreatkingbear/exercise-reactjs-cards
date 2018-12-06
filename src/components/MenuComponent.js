@@ -15,37 +15,23 @@ class Menu extends Component {
         this.setState({ selectedDish: dish});
     }
 
-    renderDish(dish) {
-        if (dish != null)
-            return(
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        else
-            return(
-                <div></div>
-            );
-    }
-
     render() {
         const menu = this.props.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1">
                 <Card key={dish.id}
-                  onClick={() => this.onDishSelect(dish)}>
-                  <CardImg width="100%" src={dish.image} alt={dish.name} />
-                  <CardImgOverlay>
-                      <CardTitle>{dish.name}</CardTitle>
-                  </CardImgOverlay>
+                    onClick={() => this.onDishSelect(dish)}>
+                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardImgOverlay>
+                        <CardTitle>{dish.name}</CardTitle>
+                    </CardImgOverlay>
                 </Card>
               </div>
             );
         });
+
+        // when user select one of the dishes, make it salient
+        const selectedDish = this.state.selectedDish;
 
         return (
             <div className="container">
@@ -54,7 +40,17 @@ class Menu extends Component {
                 </div>
                 <div className="row">
                   <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
+                    {selectedDish ? 
+                        <Card>
+                            <CardImg top src={selectedDish.image} alt={selectedDish.name} />
+                            <CardBody>
+                                <CardTitle>{selectedDish.name}</CardTitle>
+                                <CardText>{selectedDish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    :
+                        <div></div>
+                    }
                   </div>
                 </div>
             </div>
