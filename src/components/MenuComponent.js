@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import Dishdetail from './DishdetailComponent';
 
 class Menu extends Component {
 
@@ -20,7 +21,7 @@ class Menu extends Component {
             return (
             //react debugger keeps complaining about key in array. that's why I added key to below div
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <Card key={dish.id}
+                    <Card
                         onClick={() => this.onDishSelect(dish)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
@@ -40,19 +41,13 @@ class Menu extends Component {
                     {menu}
                 </div>
                 <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
-                    {selectedDish ? 
-                        <Card>
-                            <CardImg top src={selectedDish.image} alt={selectedDish.name} />
-                            <CardBody>
-                                <CardTitle>{selectedDish.name}</CardTitle>
-                                <CardText>{selectedDish.description}</CardText>
-                            </CardBody>
-                        </Card>
-                    :
-                        <div></div>
-                    }
-                  </div>
+                    <div  className="col-12 col-md-5 m-1">
+                        {selectedDish ? 
+                            <Dishdetail selectedDish={selectedDish} />
+                        :
+                            <div></div>
+                        }
+                    </div>
                 </div>
             </div>
         );
