@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
-import Dishdetail from './DishdetailComponent';
 
 class Menu extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedDish: null
-        }
-    }
-
-    onDishSelect(dish) {
-        this.setState({ selectedDish: dish});
-    }
-
     render() {
         const menu = this.props.dishes.map((dish) => {
             return (
@@ -23,7 +9,7 @@ class Menu extends Component {
             // that's why I added key to below div
                 <div key={dish.id} className="col-12 col-md-5 m-1">
                     <Card
-                        onClick={() => this.onDishSelect(dish)}>
+                        onClick={() => this.props.onClick(dish.id)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
                             <CardTitle>{dish.name}</CardTitle>
@@ -33,21 +19,10 @@ class Menu extends Component {
             );
         });
 
-        // when user select one of the dishes, make it salient
-        const selectedDish = this.state.selectedDish;
-
         return (
             <div className="container">
                 <div className="row">
                     {menu}
-                </div>
-                
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        {selectedDish && 
-                            <Dishdetail selectedDish={selectedDish} />
-                        }
-                    </div>
                 </div>
             </div>
         );

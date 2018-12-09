@@ -10,7 +10,7 @@ class Dishdetail extends Component {
 
     render() {
         const selectedDish = this.props.selectedDish;
-
+        console.log(selectedDish);
         const comments = this.props.selectedDish.comments.map((comment) => {
             return (
                 <div key={comment.id} className="row">
