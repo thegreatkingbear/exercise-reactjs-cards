@@ -9,6 +9,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import Dishdetail from './DishdetailComponent';
 
 class Main extends Component {
 
@@ -39,13 +40,23 @@ class Main extends Component {
             );
         }
 
+        const DishWithId = ({match}) => {
+            return (
+                <Dishdetail 
+                    selectedDish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishid, 10))[0]} 
+                    comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishid, 10))} 
+                />
+            );
+        }
+
         return (
             <div>
                 <Header />
 
                 <Switch>
                     <Route path='/home' component={HomePage} />
-                    <Route exact path='/menu' component={()=> <Menu dishes={this.state.dishes} onClick={(dishid) => this.onDishSelect(dishid)}/>} />
+                    <Route exact path='/menu' component={()=> <Menu dishes={this.state.dishes} />} />
+                    <Route path='/menu/:dishid' component={DishWithId} />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to="/home" />
                 </Switch>
