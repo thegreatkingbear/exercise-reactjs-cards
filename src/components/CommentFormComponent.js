@@ -11,7 +11,7 @@ class CommentForm extends Component {
         super(props);
 
         this.state = {
-            isOpen: props.isOpen
+            isOpen: false,
         };
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -26,9 +26,7 @@ class CommentForm extends Component {
 
     handleSubmit(e) {
         this.toggleModal();
-        alert(
-            "Rating : "  + JSON.stringify(e)
-        );
+        this.props.addComment(parseInt(this.props.dishId), parseInt(e.rating), e.name, e.comment);
     }
 
     render() {

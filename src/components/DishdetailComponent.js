@@ -2,35 +2,18 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentFormComponent';
-
-// to format date in my taste
-function formatDateNitty(dateString) {
-    const date = new Date(dateString);
-    return date.toDateString('mm dd, yyyy');
-}
+import Comments from './CommentsComponent';
 
 class Dishdetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedDish: props.selectedDish,
-            comments: props.comments,
-            submitComment: false
+            comments: props.comments
         };
     }
 
     render() {
-        const renderComments = this.state.comments.map((comment) => {
-            return (
-                <div key={comment.id} className="row">
-                    <ul className="list-unstyled">
-                        <li>{comment.comment}</li>
-                        <li>--{comment.author}, {formatDateNitty(comment.date)}</li>
-                    </ul>
-                </div>
-            )
-        });
-    
         return (
             <div className="container">
                 <div className="row">
@@ -60,15 +43,13 @@ class Dishdetail extends Component {
                     
                     <div className="col">
                         <div className="col-12 col-md-5 m-1">
-                            {renderComments &&
-                                <div className="container">
-                                    <h4>Comments</h4>
-                                    {renderComments}
-                                </div>
-                            }
+                            <div className="container">
+                                <h4>Comments</h4>
+                                <Comments comments={this.props.comments} addComment={this.props.addComment} dishId={this.props.dishId} />
+                            </div>
                         </div>
 
-                        <CommentForm isOpen={this.state.submitComment} />
+                        <CommentForm dishId={this.props.dishId} addComment={this.props.addComment} />
                     </div>
                 </div>
             </div>
