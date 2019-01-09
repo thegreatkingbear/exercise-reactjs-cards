@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Label, Col, Row } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -44,7 +44,7 @@ class CommentForm extends Component {
                         Submit Comment
                     </ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={this.handleSubmit}>
+                        <Form model="comment" onSubmit={this.handleSubmit}>
                             <Row className="form-group">
                                 <Label>Rating</Label>
                                 <Col>
@@ -120,7 +120,7 @@ class CommentForm extends Component {
                                     </Button>
                                 </Col>
                             </Row>
-                        </LocalForm>
+                        </Form>
                     </ModalBody>
                 </Modal>
             </div>
