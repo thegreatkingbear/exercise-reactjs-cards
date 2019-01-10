@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CommentForm from './CommentFormComponent';
 import Comments from './CommentsComponent';
 import Loading from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 class Dishdetail extends Component {
     constructor(props) {
@@ -53,7 +54,11 @@ class Dishdetail extends Component {
                     <div className="row">
                         <div className="col-12 col-md-5 m-1">
                             <Card>
-                                <CardImg top src={this.state.selectedDish.image} alt={this.state.selectedDish.name} />
+                                <CardImg 
+                                    top 
+                                    src={baseUrl + this.state.selectedDish.image} 
+                                    alt={this.state.selectedDish.name} 
+                                />
                                 <CardBody>
                                     <CardTitle>{this.state.selectedDish.name}</CardTitle>
                                     <CardText>{this.state.selectedDish.description}</CardText>
