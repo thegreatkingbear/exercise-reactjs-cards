@@ -67,14 +67,20 @@ class Dishdetail extends Component {
                         </div>
                         
                         <div className="col">
-                            <div className="col-12 col-md-5 m-1">
-                                <div className="container">
-                                    <h4>Comments</h4>
-                                    <Comments comments={this.props.comments} addComment={this.props.addComment} dishId={this.props.dishId} />
+                            {this.props.commentsLoading ? 
+                                <Loading />
+                                :
+                                <div>
+                                    <div className="col-12 col-md-5 m-1">
+                                        <div className="container">
+                                            <h4>Comments</h4>
+                                            <Comments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dishId} />
+                                        </div>
+                                    </div>
+            
+                                    <CommentForm dishId={this.props.dishId} postComment={this.props.postComment} />
                                 </div>
-                            </div>
-    
-                            <CommentForm dishId={this.props.dishId} addComment={this.props.addComment} />
+                            }
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Label, Col, Row } from 'reactstrap';
-import { Control, Form, Errors } from 'react-redux-form';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -26,7 +26,8 @@ class CommentForm extends Component {
 
     handleSubmit(e) {
         this.toggleModal();
-        this.props.addComment(parseInt(this.props.dishId), parseInt(e.rating), e.name, e.comment);
+        console.log(JSON.stringify(e));
+        this.props.postComment(parseInt(this.props.dishId), parseInt(e.rating), e.name, e.comment);
     }
 
     render() {
@@ -44,7 +45,7 @@ class CommentForm extends Component {
                         Submit Comment
                     </ModalHeader>
                     <ModalBody>
-                        <Form model="comment" onSubmit={this.handleSubmit}>
+                        <LocalForm model="comment" onSubmit={this.handleSubmit}>
                             <Row className="form-group">
                                 <Label>Rating</Label>
                                 <Col>
@@ -120,7 +121,7 @@ class CommentForm extends Component {
                                     </Button>
                                 </Col>
                             </Row>
-                        </Form>
+                        </LocalForm>
                     </ModalBody>
                 </Modal>
             </div>
