@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Stagger, FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
 
 /* I've already completed through task 3 in the previous commit
@@ -8,18 +9,26 @@ but i didn't commit it so I am writing this to commit another */
 function About(props) {
     const RenderLeaders = props.leaders.items.map((leader) => {
         return (
-            <Media key={leader.id}>
-                <Media left href="#">
-                    <Media object src={baseUrl + leader.image} alt={leader.name} className="m-2" />
-                </Media>
-                <Media body className="m-2">
-                    <Media heading>
-                        {leader.name}
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}
+                key={leader.id}
+            >
+                <Media key={leader.id}>
+                    <Media left href="#">
+                        <Media object src={baseUrl + leader.image} alt={leader.name} className="m-2" />
                     </Media>
-                        <p>{leader.designation}</p>
-                        <p>{leader.description}</p>
+                    <Media body className="m-2">
+                        <Media heading>
+                            {leader.name}
+                        </Media>
+                            <p>{leader.designation}</p>
+                            <p>{leader.description}</p>
+                    </Media>
                 </Media>
-            </Media>
+            </FadeTransform>
         );
     });
 
@@ -79,7 +88,9 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {RenderLeaders}
+                        <Stagger in>
+                            {RenderLeaders}
+                        </Stagger>
                     </Media>
                 </div>
             </div>
