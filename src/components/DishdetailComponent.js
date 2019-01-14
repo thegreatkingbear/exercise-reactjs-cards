@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform, Fade } from 'react-animation-components';
 
 import CommentForm from './CommentFormComponent';
 import Comments from './CommentsComponent';

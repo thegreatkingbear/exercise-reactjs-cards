@@ -32,6 +32,6 @@ export const dishes = (state =
             };
 
         default:
-          return state;
-      }
+            return state;
+    }
 };

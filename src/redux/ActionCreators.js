@@ -205,3 +205,59 @@ export const leadersFailed = (errorMessage) => ({
 export const leadersLoading = () => ({
     type: ACTION_TYPES.LEADERS_LOADING
 })
+
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
+    dispatch(feedbackLoading(true));
+
+    const newFeedback = {
+        firstname: firstname,
+        lastname: lastname,
+        telnum: telnum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        message: message
+    };
+
+    newFeedback.date = new Date().toISOString();
+
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('error : ' + response.status + ' ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        throw error;
+    })
+    .then(response => response.json())
+    .then(response => {
+        alert(JSON.stringify(response));
+        dispatch(addFeedback(response));
+    })
+    .catch(error => {
+        console.log('error in posting comments : ' + error.message);
+        alert('Your comment could not be posted on the server.\n' + error.message);
+    });
+}
+
+export const feedbackLoading = () => ({
+    type: ACTION_TYPES.FEEDBACK_LOADING
+});
+
+export const addFeedback = (feedback) => ({
+    type: ACTION_TYPES.ADD_FEEDBACK,
+    payload: feedback
+})

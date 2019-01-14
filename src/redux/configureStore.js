@@ -6,6 +6,7 @@ import { dishes } from './dishes';
 import { comments } from './comments';
 import { promotions } from './promotions';
 import { leaders } from './leaders';
+import { feedback } from './feedback';
 import { InitialFeedback } from './forms';
 
 export const ConfigureStore = () => {
@@ -16,8 +17,9 @@ export const ConfigureStore = () => {
             comments: comments,
             promotions: promotions,
             leaders: leaders,
+            feedback: feedback,
             ...createForms({
-                feedback: InitialFeedback
+                initialFeedback: InitialFeedback
             })
         }),
         composeEnhancers(
