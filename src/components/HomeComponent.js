@@ -69,6 +69,8 @@ class Home extends Component {
                     <div className="col-12 col-md m-1">
                         <RenderCard 
                             item={this.state.leader} 
+                            isLoading={this.props.leadersLoading}
+                            errorMessage={this.props.leadersErrorMessage}
                         />
                     </div>
                 </div>

@@ -11,7 +11,7 @@ import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import Dishdetail from './DishdetailComponent';
 import About from './AboutComponent';
-import { postComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     console.log("map state to props called");
@@ -39,7 +39,10 @@ const mapDispatchToProps = dispatch => {
             dispatch(fetchComments()),
 
         fetchPromos: () =>
-            dispatch(fetchPromos())
+            dispatch(fetchPromos()),
+
+        fetchLeaders: () => 
+            dispatch(fetchLeaders())
     }
 };
 
@@ -49,6 +52,7 @@ class Main extends Component {
         this.props.fetchDishes();
         this.props.fetchComments();
         this.props.fetchPromos();
+        this.props.fetchLeaders();
     }
 
     onDishSelect(dishid) {
@@ -66,7 +70,9 @@ class Main extends Component {
                     promotion={this.props.promotions.promotions.filter((promotion) => promotion.featured)[0]}
                     promotionLoading={this.props.promotions.isLoading}
                     promotionErrorMessage={this.props.promotions.errorMessage}
-                    leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+                    leader={this.props.leaders.items.filter((leader) => leader.featured)[0]}
+                    leadersLoading={this.props.leaders.isLoading}
+                    leadersErrorMessage={this.props.leaders.errorMessage}
                 />
             );
         }

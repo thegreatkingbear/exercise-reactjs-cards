@@ -1,15 +1,16 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
 /* I've already completed through task 3 in the previous commit
 but i didn't commit it so I am writing this to commit another */
 function About(props) {
-    const RenderLeaders = props.leaders.map((leader) => {
+    const RenderLeaders = props.leaders.items.map((leader) => {
         return (
             <Media key={leader.id}>
                 <Media left href="#">
-                    <Media object src={leader.image} alt={leader.name} className="m-2" />
+                    <Media object src={baseUrl + leader.image} alt={leader.name} className="m-2" />
                 </Media>
                 <Media body className="m-2">
                     <Media heading>
